@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/login/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
+    <title>LOGIN</title>
+
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1> FAZER LOGIN </h1>
+
+        <div id='msgError'></div>
+        <form method="POST" action="/login">
+            <div class="label-float">
+<input type="text" id="usuario" name="usuario" placeholder="" required>
+
+<label id="userLabel"  for="usuario">Usuário</label>
+            </div>
+
+            <div class="label-float">
+                <input type="password" name="senha" id="senha" placeholder="" required>
+
+                <label id="senhaLabel"  for="senha">Senha</label>
+                <i  class="fa fa-eye" aria-hidden="true"></i>
+            </div>
+
+            <div class="justify-center" >
+<button type="submit">LOGIN</a></button>
+            </div>
+            
+            <br>
+            <br>
+
+            <p>nao tem cadastro?
+                <a href="/cadastro" > cadastra-se </a>
+            </p>
+        </div>
+    </form>
+    </div>
+    <!--============================== VER E OCULTAR SENHA ======================================================-->
+    <script>
+ let btn = document.querySelector('.fa-eye')
+
+btn.addEventListener('click',()=>{//função que ao clicar ele faz algo
+let inputSenha = document.querySelector('#senha');
+if (inputSenha.getAttribute('type') == 'password'){
+inputSenha.setAttribute('type','text');
+}else{
+    inputSenha.setAttribute('type','password');
+}
+})
+    </script>
+   <!--====================================================================================-->
+</body>
+</html>

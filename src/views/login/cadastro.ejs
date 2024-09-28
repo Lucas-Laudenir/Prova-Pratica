@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/login/login.css">
+    <link rel="shortcut icon" type="image/icon" href="./media/icon.jpeg">
+    <title> CADASTRO </title>
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">  
+    </head>
+    
+    <body>
+        <form id="formCadastro" method="POST" action="/cadastro/save"></form> 
+    <div class='container'>
+      <div class='card'>
+         
+        <h1> Cadastrar de Usuario </h1>
+        
+        <div id='msgError'></div>
+        <div id='msgSuccess'></div>
+        <Script>
+         let msgError = document.querySelector('#msgError');
+         let msgSuccess = document.querySelector('#msgSuccess');
+        </Script>
+       <form action="/cadastro/save" method="POST"> <!-- form serve para fazer um formulario HTML e 
+        salvar as informações no banco de dados -->
+<!--========= USUARIO ===========================================================================-->        
+
+<div class="label-float">
+    <input type="text" name="usuario" id="usuario" placeholder=" " required>
+    <label id="labelUsuario" for="usuario">Usuario para Login</label>
+</div>
+<!--JS-->        
+        <script>
+let usuario = document.querySelector('#usuario');
+let labelUsuario = document.querySelector('#labelUsuario');
+let validUsuario = false;
+
+usuario.addEventListener('keyup', () => {
+    if (usuario.value.length <= 4) {
+        labelUsuario.setAttribute('style', 'color: red');
+        labelUsuario.innerHTML = '<strong> Usuário *Insira no mínimo 5 caracteres</strong>';
+        usuario.setAttribute('style', 'border-color: red');
+        validUsuario = false;
+    } else {
+        labelUsuario.setAttribute('style', 'color: green');
+        labelUsuario.innerHTML = 'Usuário';
+        usuario.setAttribute('style', 'border-color: green');
+        validUsuario = true;
+    }
+})
+        </script>
+<!--====================================================================================-->
+<!--================= Email ===================================================================-->
+<div class="label-float">
+    <input type="text" name="Email" id="Email" placeholder=" " required>
+    <label id="labelEmail" pattern="\d*" for="Email">Digite seu Email</label>
+</div>
+<!-- O atributo pattern="\d*" só permite dígitos (números).
+O atributo maxlength="11" limita o número de caracteres a 11.  -->
+<!--JS-->
+<script>
+let  Email = document.querySelector('#Email');
+let labelEmail = document.querySelector('#labelEmail');
+let validEmail = false;
+              
+Email.addEventListener('keyup', () => {
+   // const cpfValue = CPF.value.replace(/\D/g, '');
+     // Remove tudo que não for número
+   // CPF.value = cpfValue;
+     // Atualiza o campo com apenas números
+
+    if (Email.length !== 11) {
+        labelCPF.setAttribute('style', 'color: red');
+        labelCPF.innerHTML = '<strong> Email *Insira exatamente 11 números</strong>';
+        Email.setAttribute('style', 'border-color: red');
+        validCPF = false;
+    } else {
+        labelEmail.setAttribute('style', 'color: green');
+        labelEmail.innerHTML = 'Email';
+        Email.setAttribute('style', 'border-color: green');
+        validEmail = true;
+    }
+});
+                </script>
+<!--====================================================================================-->
+<!--============================ NOME ========================================================-->
+<div class="label-float">
+    <input type="text" name="nome" id="nome" placeholder=" " required>
+    <label id="labelNome" for="nome">Nome</label>
+</div>
+
+<!--====================================================================================-->
+<!--=============================== Senha =====================================================-->
+
+<div class="label-float">
+    <input type="password" name="senha" id="senha" placeholder=" " required>
+    <label id="labelSenha" for="senha">Senha</label>
+    <i id="verSenha" class="fa fa-eye" aria-hidden="true"></i>
+</div>
+<!--JS-->
+<script>
+let senha = document.querySelector('#senha');
+let labelSenha = document.querySelector('#labelSenha');
+let validSenha = false;
+
+senha.addEventListener('keyup', () => {
+    const regex = /[!@#$%^&*(),.?":{}|<>]/;
+    let valid = true;
+    if (senha.value.length < 6 || !regex.test(senha.value)) {
+        labelSenha.setAttribute('style', 'color: red');
+        labelSenha.innerHTML = '<strong> Senha *Insira no mínimo 6 caracteres e um especial </strong>';
+        senha.setAttribute('style', 'border-color: red'); 
+        validSenha = false;
+    } else {
+        labelSenha.setAttribute('style', 'color: green');
+        labelSenha.innerHTML = 'Senha';
+        senha.setAttribute('style', 'border-color: green');
+        validSenha = true;
+    }
+});
+</script>
+<!--====================================================================================-->
+<!--========================== Confirmar Senha ==========================================================-->
+
+<div class="label-float">
+    <input type="password" id="confirmSenha" placeholder=" " required>
+    <label id="labelConfirmSenha" for="confirmSenha">Confirmar Senha</label>
+    <i id="verConfirmSenha" class="fa fa-eye" aria-hidden="true"></i>
+</div>
+<!--JS-->                
+<script>
+   let confirmSenha = document.querySelector('#confirmSenha');
+let labelConfirmSenha = document.querySelector('#labelConfirmSenha');
+let validConfirmSenha = false;
+
+confirmSenha.addEventListener('keyup', () => {
+    if (senha.value !== confirmSenha.value) {
+        labelConfirmSenha.setAttribute('style', 'color: red');
+        labelConfirmSenha.innerHTML = '<strong>Confirmar Senha *Senhas não são iguais</strong>';
+        confirmSenha.setAttribute('style', 'border-color: red');
+        validConfirmSenha = false;
+    } else {
+        labelConfirmSenha.setAttribute('style', 'color: green');
+        labelConfirmSenha.innerHTML = 'Confirmar Senha';
+        confirmSenha.setAttribute('style', 'border-color: green');
+        validConfirmSenha = true;
+    }
+});
+
+</script>
+<!--=================================== DEFINIR PAPEL =================================================-->
+<div class="container"></div>
+<div class="label-float">
+    <select name="papel" id="papel">
+        <option value="Usuário">Usuário</option>
+        <option value="Administrador">Administrador</option>
+    </select>
+</div>
+<!-- BOTÃO ATIVO -->
+        <div class="checkbox-container">
+            <input type="checkbox" id="ativo" name="ativo">
+            <label for="ativo">Ativo</label>
+        </div>
+<!--====================================================================================-->
+<!--============================== VER E OCULTAR SENHA ======================================================-->
+<script>
+let btn = document.querySelector('#verSenha');
+let btnConfirm = document.querySelector('#verConfirmSenha');
+btn.addEventListener('click', () => { // Função que ao clicar faz algo
+    let inputSenha = document.querySelector('#senha');
+    if (inputSenha.getAttribute('type') == 'password') {
+        inputSenha.setAttribute('type', 'text');
+    } else {
+        inputSenha.setAttribute('type', 'password');
+    }
+});
+
+btnConfirm.addEventListener('click', () => { 
+    let inputConfirmSenha = document.querySelector('#confirmSenha');
+    if (inputConfirmSenha.getAttribute('type') == 'password') {
+        inputConfirmSenha.setAttribute('type', 'text');
+    } else {
+        inputConfirmSenha.setAttribute('type', 'password');
+    }
+});
+
+</script>
+<!--====================================================================================-->
+
+    <div class='justify-center'>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </div>
+
+</form>
+                <br>
+                <p>Já tem cadastro?
+                  <a href="/login"> LOGIN </a>
+              </p>
+        
+      </div>
+      </div>
+    
+    </body>
